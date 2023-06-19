@@ -1,0 +1,11 @@
+{
+  "name": "dotun-server",
+  "version": "1.0.0",
+  "description": "dotun server",
+  "main": "index.js",
+  "scripts": {
+    "test": "hello world"
+  },
+  "author": "imoh precious",
+  "license": "ISC"
+}
