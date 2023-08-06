@@ -9,7 +9,7 @@
     "dev:client": "cross-env NODE_ENV=development --openssl-legacy-provider",
     "dev:server": "nodemon",
     "dev": "npm-run-all --parallel dev:*",
-    "start": "cross-env NODE_ENV=production node index.js",
+    "start": "nodemon index.js",
     "postinstall": "npm run build",
     "seed:db": "node utils/seed.js",
     "test": "echo \"Error: no test specified\" && exit 1"
