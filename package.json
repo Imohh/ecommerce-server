@@ -7,7 +7,7 @@
     "clean": "rimraf dist",
     "build": "npm run clean && cross-env NODE_ENV=production",
     "dev:client": "cross-env NODE_ENV=development --openssl-legacy-provider",
-    "dev:server": "nodemon",
+    "dev:server": "nodemon index.js",
     "dev": "npm-run-all --parallel dev:*",
     "start": "nodemon index.js",
     "postinstall": "npm run build",
