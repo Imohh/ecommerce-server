@@ -37,7 +37,6 @@ app.use(routes);
 
 console.log("work perfectly")
 
-console.log('process.env.NODE_ENV ', process.env.NODE_ENV);
 if (process.env.NODE_ENV === 'production') {
   app.use(compression());
   app.get('*', (req, res) => {
