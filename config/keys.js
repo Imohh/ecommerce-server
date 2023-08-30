@@ -2,8 +2,8 @@ module.exports = {
   app: {
     name: 'Mern Ecommerce',
     apiURL: 'api',
-    serverURL: 'https://ecommerce-server-lemon.vercel.app',
-    clientURL: 'https://ecommerce-server-lemon.vercel.app'
+    serverURL: 'http://localhost:3000',
+    clientURL: 'http://localhost:8080'
   },
   port: 3000,
   database: {

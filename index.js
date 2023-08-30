@@ -24,7 +24,7 @@ app.use(
 );
 app.use(cors(
   {
-    origin: ["https://mern-ecommerce-server.vercel.app"],
+    origin: ["https://mern-ecommerce-o5ka.vercel.app"],
     methods: ["POST", "GET"],
     credentials: true
   }
