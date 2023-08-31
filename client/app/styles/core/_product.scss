@@ -169,6 +169,10 @@
   .cards {
     width: 50%
   }
+
+  .product-filter {
+    margin-top: 10%
+  }
 }
 
 
@@ -284,7 +288,7 @@
 
 @media screen and (max-width: 600px) {
   .product-shop {
-    padding: 100px 50px
+    padding: 100px 20px
   }
 }
 
