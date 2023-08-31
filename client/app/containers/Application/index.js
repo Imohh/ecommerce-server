@@ -82,9 +82,8 @@ class Application extends React.PureComponent {
   render() {
     return (
       <div className='application'>
-        {/*<Notification />
-        <Navigation />*/}
-      {/*everything works when we are not fetching from the url*/}
+        <Notification />
+        <Navigation />
           
             <div className='wrapper'>
               <Switch>
