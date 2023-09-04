@@ -4,7 +4,7 @@
  *
  */
 
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import { connect } from 'react-redux';
 import { Switch, Route } from 'react-router-dom';
@@ -30,6 +30,13 @@ import suit from './assets/20230903_015006.jpg'
 import slider from './assets/slider.jpg'
 import slider1 from './assets/slider1.jpg'
 
+import AwesomeSlider from 'react-awesome-slider';
+import 'react-awesome-slider/dist/styles.css';
+
+
+
+
+
 class Homepage extends React.PureComponent {
 
   constructor() {
@@ -45,7 +52,13 @@ class Homepage extends React.PureComponent {
   }
 
 
+
   render() {
+
+    const onAutoplayTimeLeft = (s, time, progress) => {
+      progressCircle.current.style.setProperty('--progress', 1 - progress);
+      progressContent.current.textContent = `${Math.ceil(time / 1000)}s`;
+    };
 
 
     return (
@@ -76,9 +89,24 @@ class Homepage extends React.PureComponent {
           </div>
         </div>
 
-        <div className="" style={{height: "200px"}}>
+
+        <div className="" style={{height: "100px"}}></div>
+
+        {/*SLIDER*/}
+        <div className="">
+
+          <AwesomeSlider animation="cubeAnimation" style={{height: "600px"}} >
+            <div data-src={slider} style={{height: "600px"}} />
+            <div data-src={slider1} style={{height: "600px"}} />
+            <div data-src={slider} style={{height: "600px"}} />
+          </AwesomeSlider>
 
         </div>
+
+        <div style={{textAlign: "center", padding: "10% 2%"}}>
+          <i style={{fontSize: "22px"}}>fashion is like eating, you shouldn't stick to the same menu...</i>
+        </div>
+
 
         {/*TOP SECTION*/}
         <div className="" style={{height: "100%"}}>
@@ -169,9 +197,9 @@ class Homepage extends React.PureComponent {
 
 
         {/*SHOP SECTION*/}
-        <div className="bg-red-500 py-40">
-          {/*<h1>hello world</h1>*/}
-        </div>
+        {/*<div className="bg-red-500 py-40">
+          <h1>hello world</h1>
+        </div>*/}
 
 
 
