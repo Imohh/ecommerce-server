@@ -164,12 +164,15 @@ class Navigation extends React.PureComponent {
               <a className="navbar-brand mx-auto" href="/">eminence</a>
               
 
+              
+
               <div className="form-inline my-4 my-lg-0">
                 <Nav navbar>
                   {authenticated ? (
                     <UncontrolledDropdown nav inNavbar>
                       <DropdownToggle nav>
-                        <img className="account-image" width="24" height="24" src="https://img.icons8.com/material-outlined/24/user--v1.png" alt="user--v1"/><span className="hide-display">{user.firstName ? user.firstName : 'Welcome'}</span>
+                        <img className="account-image" width="30" height="30" src="https://img.icons8.com/small/30/user.png" alt="user"/>
+                        <span className="hide-display">{user.firstName ? user.firstName : 'Welcome'}</span>
                         <span className='fa fa-chevron-down dropdown-caret'></span>
                       </DropdownToggle>
                       <DropdownMenu right>
@@ -184,7 +187,8 @@ class Navigation extends React.PureComponent {
                   ) : (
                     <UncontrolledDropdown nav inNavbar>
                       <DropdownToggle nav>
-                        <img className="account-image" width="24" height="24" src="https://img.icons8.com/material-outlined/24/user--v1.png" alt="user--v1"/><span className="hide-display">Welcome!</span>
+                        <img className="account-image" width="24" height="24" src="https://img.icons8.com/small/24/user.png" alt="user"/>
+                        <span className="hide-display">Welcome!</span>
                         <span className='fa fa-chevron-down dropdown-caret hide-display'></span>
                       </DropdownToggle>
                       <DropdownMenu right>
