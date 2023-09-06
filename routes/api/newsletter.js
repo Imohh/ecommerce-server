@@ -8,9 +8,6 @@ const Newsletter = require('../../models/Newsletter');
 
 router.post('/subscribe', async (req, res) => {
   const email = req.body.email;
-  const formEntry = new Newsletter({
-    email,
-  })
 
   if (!email) {
     return res.status(400).json({ error: 'You must enter an email address.' });
@@ -23,7 +20,6 @@ router.post('/subscribe', async (req, res) => {
   }
 
   await mailgun.sendEmail(email, 'newsletter-subscription');
-  await formEntry.save();
 
   res.status(200).json({
     success: true,
