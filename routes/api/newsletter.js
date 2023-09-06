@@ -4,8 +4,6 @@ const router = express.Router();
 const mailchimp = require('../../services/mailchimp');
 const mailgun = require('../../services/mailgun');
 
-const Newsletter = require('../../models/Newsletter');
-
 router.post('/subscribe', async (req, res) => {
   const email = req.body.email;
 
@@ -25,7 +23,6 @@ router.post('/subscribe', async (req, res) => {
     success: true,
     message: 'You have successfully subscribed to the newsletter'
   });
-  
 });
 
 module.exports = router;
