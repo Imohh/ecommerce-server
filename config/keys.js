@@ -7,7 +7,7 @@ module.exports = {
   },
   port: 3000,
   database: {
-    url: 'mongodb+srv://imoh88:iamnotorious@cluster0.tjyapzm.mongodb.net/shop?retryWrites=true&w=majority'
+    url: process.env.MONGO_URI
   },
   jwt: {
     secret: 'ghp_ydtlBNGF23U9dIgYYrB3XaHt30a3Pm0sgbr',
