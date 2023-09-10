@@ -207,17 +207,15 @@ const getCartItems = cartItems => {
   return newCartItems;
 };
 
-// const calculatePurchaseQuantity = inventory => {
-//   if (inventory <= 25) {
-//     return 1;
-//   } else if (inventory > 25 && inventory <= 100) {
-//     return 5;
-//   } else if (inventory > 100 && inventory < 500) {
-//     return 25;
-//   } else {
-//     return 50;
-//   }
-// };
+export const handlePayment = () => {
+  return async (dispatch, getState) => {  
+    const cartItems = getState().cart.cartItems;
+    console.log('cartItems:', cartItems)
+    const response = await axios.post('/api/stripe/create-checkout-session', {
+      cartItems,
+    })
+  }
+}
 
 
 const calculatePurchaseQuantity = inventory => {
