@@ -209,13 +209,44 @@ const getCartItems = cartItems => {
 
 export const handlePayment = () => {
   return async (dispatch, getState) => {  
+    const cartTotal = parseFloat(localStorage.getItem(CART_TOTAL));
     const cartItems = getState().cart.cartItems;
+    const productNames = cartItems.map(item => item.name);
     console.log('cartItems:', cartItems)
-    const response = await axios.post('/api/stripe/create-checkout-session', {
-      cartItems,
-    })
+    try {
+      const response = await axios.post('/api/stripe/create-checkout-session', {
+        cartItems,
+        cartTotal,
+        productNames,
+      })
+
+      window.location.href = response.data.url
+    } catch (error) {
+      console.log('Error, error')
+    }
   }
 }
+
+// export const handlePayment = async () => {
+//   const cartTotal = parseFloat(localStorage.getItem(CART_TOTAL));
+//   const cartItems = getState().cart.cartItems;
+//   const productNames = cartItems.map(item => item.name);
+
+//   // const dataToSend = {
+//   //   cartTotal,
+//   //   productNames,
+//   // }
+
+//   const res = await fetch('/api/stripe/create-checkout-session', {
+//     method: 'POST',
+//     headers: {
+//       "Content-Type": 'application/json'
+//     },
+//     body: JSON.stringify({cartTotal, productNames}),
+//   })
+//   const body = await res.json()
+//   window.location.href = body.url
+// }
 
 
 const calculatePurchaseQuantity = inventory => {
