@@ -35,8 +35,8 @@ router.post('/create-checkout-session', async (req, res) => {
           },
         ],
         mode: 'payment',
-        success_url: 'http://localhost:8080/success',
-        cancel_url: 'http://localhost:8080/contact',
+        success_url: 'https://testing-eminence.vercel.app/success',
+        cancel_url: 'https://testing-eminence.vercel.app/contact',
         payment_intent_data: {
             description: paymentDescription,
         }
