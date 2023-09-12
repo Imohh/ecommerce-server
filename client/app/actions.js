@@ -17,6 +17,7 @@ import * as forgotPassword from './containers/ForgotPassword/actions';
 import * as navigation from './containers/Navigation/actions';
 import * as cart from './containers/Cart/actions';
 import * as newsletter from './containers/Newsletter/actions';
+import * as unsubscribe from './containers/Unsubscribe/actions';
 import * as dashboard from './containers/Dashboard/actions';
 import * as account from './containers/Account/actions';
 import * as address from './containers/Address/actions';
@@ -47,6 +48,7 @@ export default function mapDispatchToProps(dispatch) {
       ...navigation,
       ...cart,
       ...newsletter,
+      ...unsubscribe,
       ...dashboard,
       ...account,
       ...address,
