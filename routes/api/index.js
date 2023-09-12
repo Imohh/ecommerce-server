@@ -27,6 +27,9 @@ router.use('/address', addressRoutes);
 // newsletter routes
 router.use('/newsletter', newsletterRoutes);
 
+// unsubscribe routes
+router.use('/unsubscribe', unsubscribeRoutes);
+
 // product routes
 router.use('/product', productRoutes);
 
