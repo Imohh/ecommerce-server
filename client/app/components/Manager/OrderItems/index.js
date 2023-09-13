@@ -15,6 +15,7 @@ import DropdownConfirm from '../../Common/DropdownConfirm';
 
 const OrderItems = props => {
   const { order, user, updateOrderItemStatus } = props;
+  const pound = '\u00A3'
 
   const renderPopoverContent = item => {
     const statuses = Object.values(CART_ITEM_STATUS);

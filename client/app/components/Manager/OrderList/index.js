@@ -12,6 +12,7 @@ import { formatDate } from '../../../utils/date';
 
 const OrderList = props => {
   const { orders } = props;
+  const pound = '\u00A3'
 
   const renderFirstItem = order => {
     if (order.products) {
@@ -20,8 +21,8 @@ const OrderList = props => {
         <img
           className='item-image'
           src={`${
-            product && product?.imageUrl
-              ? product?.imageUrl
+            product && product?.img
+              ? product?.img
               : '/images/placeholder-image.png'
           }`}
         />

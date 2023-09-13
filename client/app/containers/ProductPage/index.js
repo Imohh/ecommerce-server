@@ -85,6 +85,8 @@ class ProductPage extends React.PureComponent {
       }
     ];
 
+    const pound = '\u00A3'
+
 
     return (
       <div className='product-shop' style={{margin: "0 auto"}}>
