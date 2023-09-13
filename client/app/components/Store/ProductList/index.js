@@ -13,6 +13,8 @@ import AddToWishList from '../AddToWishList';
 const ProductList = props => {
   const { products, updateWishlist, authenticated } = props;
 
+  const pound = '\u00A3'
+  
   return (
 
 
@@ -52,7 +54,7 @@ const ProductList = props => {
       <div className="card-description">
         <div className="title">
           <span style={{textTransform: "capitalize"}}>{product.name}</span><br />
-          ${product.price}
+          {pound}{product.price}
         </div>
       </div>
       {/*<div className="card-description">
@@ -102,4 +104,4 @@ const ProductList = props => {
   );
 };
 
-export default ProductList;
+export default ProductList;s
