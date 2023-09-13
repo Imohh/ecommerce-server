@@ -139,7 +139,7 @@ class ProductPage extends React.PureComponent {
                           </Link>
                         </p>
                       )}
-                      <p className='price'>${product.price}</p>
+                      <p className='price'>£{product.price}</p>
                       <div className='item-customize product-select-section'>
                         <button
                           className={`size-option ${productShopData.size === "S" ? "active-select" : "size-select"}`}
