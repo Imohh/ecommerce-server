@@ -54,7 +54,7 @@ const ProductList = props => {
       <div className="card-description">
         <div className="title">
           <span style={{textTransform: "capitalize"}}>{product.name}</span><br />
-          {pound}{product.price}
+          ${product.price}
         </div>
       </div>
       {/*<div className="card-description">
