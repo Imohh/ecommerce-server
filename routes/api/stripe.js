@@ -10,9 +10,10 @@ router.post('/create-checkout-session', async (req, res) => {
     const { cartTotal, productNames } = req.body;
 
     const combineProductNames = productNames.join(', ');
+    const timestampId = Date.now().toString();
 
     // Create a new payment document
-    const paymentDescription = 'Payment for: ' + combineProductNames;
+    const paymentDescription = 'Payment for: ' + combineProductNames + " " + "ID: " + timestampId;
 
     const newPayment = new Payment({
       paymentDescription,
