@@ -12,7 +12,6 @@ import { formatDate } from '../../../utils/date';
 
 const OrderList = props => {
   const { orders } = props;
-  const pound = '\u00A3'
 
   const renderFirstItem = order => {
     if (order.products) {

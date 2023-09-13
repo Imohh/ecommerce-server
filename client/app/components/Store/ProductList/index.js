@@ -13,8 +13,6 @@ import AddToWishList from '../AddToWishList';
 const ProductList = props => {
   const { products, updateWishlist, authenticated } = props;
 
-  const pound = '\u00A3'
-  
   return (
 
 
@@ -104,4 +102,4 @@ const ProductList = props => {
   );
 };
 
-export default ProductList;s
+export default ProductList;

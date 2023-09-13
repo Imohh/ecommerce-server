@@ -11,8 +11,6 @@ import { Col } from 'reactstrap';
 const OrderSummary = props => {
   const { order } = props;
 
-  const pound = '\u00A3'
-
   return (
     <Col className='order-summary pt-3'>
       <h2>Order Summary</h2>
