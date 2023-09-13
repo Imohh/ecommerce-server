@@ -222,9 +222,9 @@ class Homepage extends React.PureComponent {
 
 
         {/*SHOP SECTION*/}
-        <div className="bg-red-500 py-40">
+        {/*<div className="bg-red-500 py-40">
           <h1>hello world</h1>
-        </div>
+        </div>*/}
 
 
 
