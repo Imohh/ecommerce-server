@@ -94,7 +94,7 @@ class Shop extends React.PureComponent {
                 lg={{ size: 2, order: 1 }}
                 className='text-center text-md-left mt-3 mt-md-0 mb-1 mb-md-0'
               >
-                {/*<button onClick={() => this.setState({showHide: !this.state.showHide}) }>Filters: </button>*/}
+                <button onClick={() => this.setState({showHide: !this.state.showHide}) }>Filters: </button>
               </Col>
               <Col
                 xs={{ size: 12, order: 1 }}

@@ -86,6 +86,7 @@ class Application extends React.PureComponent {
       <div className='application'>
         <Notification />
         <Navigation />
+      {/*everything works when we are not fetching from the url*/}
           
             <div className='wrapper'>
               <Switch>
