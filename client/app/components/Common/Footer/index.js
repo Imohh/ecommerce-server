@@ -146,7 +146,7 @@ const Footer = () => {
                 </a>
               </li>
               <li>
-                <a href='https://instagram.com/eminencebygtx' rel='noreferrer noopener' target='_blank'>
+                <a href='/#instagram' rel='noreferrer noopener' target='_blank'>
                   <img src="https://img.icons8.com/material-outlined/32/null/instagram-new--v1.png"/>
                 </a>
               </li>
@@ -229,7 +229,7 @@ const Footer = () => {
                     </a>
                   </li>
                   <li>
-                    <a href='/#instagram' rel='noreferrer noopener' target='_blank'>
+                    <a href='https://instagram.com/eminencebygtx' rel='noreferrer noopener' target='_blank'>
                       <img src="https://img.icons8.com/material-outlined/32/null/instagram-new--v1.png"/>
                     </a>
                   </li>

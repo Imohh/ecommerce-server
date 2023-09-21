@@ -7,43 +7,43 @@ const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 router.post('/create-checkout-session', async (req, res) => {
     try {
 
-        const { total, productNames } = req.body;
+    const { cartTotal, productNames } = req.body;
 
-        const combineProductNames = productNames.join(', ');
-        const timestampId = Date.now().toString();
+    const combineProductNames = productNames.join(', ');
+    const timestampId = Date.now().toString();
 
-        // Create a new payment document
-        const paymentDescription = timestampId;
+    // Create a new payment document
+    const paymentDescription = 'Payment for: ' + combineProductNames + " " + "ID: " + timestampId;
 
-        const newPayment = new Payment({
-          paymentDescription,
-          unit_amount: total,
-        });
+    const newPayment = new Payment({
+      paymentDescription,
+      unit_amount: cartTotal,
+    });
 
-        await newPayment.save();
+    await newPayment.save();
 
-        const session = await stripe.checkout.sessions.create({
-            line_items: [
-              {
-                price_data: {
-                    currency: "gbp",
-                    product_data: {
-                        name: combineProductNames,
-                    },
-                    unit_amount: total * 100,
+    const session = await stripe.checkout.sessions.create({
+        line_items: [
+          {
+            price_data: {
+                currency: "gbp",
+                product_data: {
+                    name: combineProductNames,
                 },
-                quantity: 1,
-              },
-            ],
-            mode: 'payment',
-            success_url: 'http://localhost:8080/success',
-            cancel_url: 'http://localhost:8080/contact',
-            payment_intent_data: {
-                description: paymentDescription,
-            }
-          });
+                unit_amount: cartTotal * 100,
+            },
+            quantity: 1,
+          },
+        ],
+        mode: 'payment',
+        success_url: 'https://testing-eminence.vercel.app/success',
+        cancel_url: 'https://testing-eminence.vercel.app/contact',
+        payment_intent_data: {
+            description: paymentDescription,
+        }
+      });
 
-        res.json({url: session.url});
+    res.json({url: session.url});
     
     } catch (error) {
         console.log(error)

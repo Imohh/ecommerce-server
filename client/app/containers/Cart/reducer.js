@@ -10,17 +10,13 @@ import {
   REMOVE_FROM_CART,
   HANDLE_CART_TOTAL,
   SET_CART_ID,
-  CLEAR_CART,
-  SET_SHIPPING_FEE,
-  UPDATE_CART_TOTAL,
+  CLEAR_CART
 } from './constants';
 
 const initialState = {
   cartItems: [],
   cartTotal: 0,
-  cartId: '',
-  shippingFee: 0,
-  total: 0,
+  cartId: ''
 };
 
 const cartReducer = (state = initialState, action) => {
@@ -51,8 +47,7 @@ const cartReducer = (state = initialState, action) => {
     case HANDLE_CART_TOTAL:
       newState = {
         ...state,
-        cartTotal: action.payload,
-        shippingFee: action.payload
+        cartTotal: action.payload
       };
 
       return newState;
@@ -61,8 +56,7 @@ const cartReducer = (state = initialState, action) => {
         ...state,
         cartItems: action.payload.cartItems,
         cartTotal: action.payload.cartTotal,
-        cartId: action.payload.cartId,
-        shippingFee: action.payload.shippingFee
+        cartId: action.payload.cartId
       };
       return newState;
     case SET_CART_ID:
@@ -76,21 +70,9 @@ const cartReducer = (state = initialState, action) => {
         ...state,
         cartItems: [],
         cartTotal: 0,
-        shippingFee: 0,
         cartId: ''
       };
       return newState;
-    case SET_SHIPPING_FEE:
-      newState = {
-        ...state,
-        shippingFee: 0,
-      };
-      return newState;
-    case UPDATE_CART_TOTAL:
-      return {
-        ...state,
-        total: action.payload, // Update the total value
-      };
 
     default:
       return state;

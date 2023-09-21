@@ -14,34 +14,27 @@ import {
   REMOVE_FROM_CART,
   HANDLE_CART_TOTAL,
   SET_CART_ID,
-  CLEAR_CART,
-  SET_SHIPPING_FEE,
-  UPDATE_CART_TOTAL,
+  CLEAR_CART
 } from './constants';
 
 import {
   SET_PRODUCT_SHOP_FORM_ERRORS,
   RESET_PRODUCT_SHOP
 } from '../Product/constants';
-import { FETCH_ADDRESSES } from '../Address/constants'
 
 import { CART_ID, CART_ITEMS, CART_TOTAL } from '../../constants';
 import handleError from '../../utils/error';
 import { allFieldsValidation } from '../../utils/validation';
 import { toggleCart } from '../Navigation/actions';
-// import { fetchAddresses } from '../Address/actions'
-
 
 // Handle Add To Cart
-export const handleAddToCart = (product, total) => {
+export const handleAddToCart = product => {
   return (dispatch, getState) => {
     product.quantity = Number(getState().product.productShopData.quantity);
     product.size = String(getState().product.productShopData.size);
     product.totalPrice = product.quantity * product.price;
     product.totalPrice = parseFloat(product.totalPrice.toFixed(2));
     const inventory = getState().product.storeProduct.inventory;
-
-
 
     const result = calculatePurchaseQuantity(inventory);
 
@@ -108,20 +101,10 @@ export const calculateCartTotal = () => {
     });
 
     total = parseFloat(total.toFixed(2));
-    localStorage.setItem(UPDATE_CART_TOTAL, total); // this is where the shippingfee should be added and it will reflect in stripe checkout
+    localStorage.setItem(CART_TOTAL, total);
     dispatch({
       type: HANDLE_CART_TOTAL,
       payload: total
-    });
-  };
-};
-
-export const setShippingFee = (fee) => {
-  return (dispatch) => {
-    localStorage.setItem(SET_SHIPPING_FEE, fee);
-    dispatch({
-      type: SET_SHIPPING_FEE,
-      payload: fee,
     });
   };
 };
@@ -224,35 +207,16 @@ const getCartItems = cartItems => {
   return newCartItems;
 };
 
-export const updateCartTotal = total => ({
-  type: UPDATE_CART_TOTAL,
-  payload: total,
-});
-
-export const handlePayments = () => {
-  return async (dispatch, getState) => {
-    const storedTotal = JSON.parse(localStorage.getItem('shippingTotal'));
+export const handlePayment = () => {
+  return async (dispatch, getState) => {  
     const cartTotal = parseFloat(localStorage.getItem(CART_TOTAL));
     const cartItems = getState().cart.cartItems;
     const productNames = cartItems.map(item => item.name);
-
-    console.log('shippingTotal:', storedTotal)
-
-  }
-}
-
-export const handlePayment = () => {
-  return async (dispatch, getState) => {  
-    // const cartTotal = parseFloat(localStorage.getItem(CART_TOTAL));
-    const total = JSON.parse(localStorage.getItem('shippingTotal'));
-    const cartItems = getState().cart.cartItems;
-    const productNames = cartItems.map(item => item.name);
-
     console.log('cartItems:', cartItems)
     try {
       const response = await axios.post('/api/stripe/create-checkout-session', {
         cartItems,
-        total,
+        cartTotal,
         productNames,
       })
 
@@ -262,6 +226,27 @@ export const handlePayment = () => {
     }
   }
 }
+
+// export const handlePayment = async () => {
+//   const cartTotal = parseFloat(localStorage.getItem(CART_TOTAL));
+//   const cartItems = getState().cart.cartItems;
+//   const productNames = cartItems.map(item => item.name);
+
+//   // const dataToSend = {
+//   //   cartTotal,
+//   //   productNames,
+//   // }
+
+//   const res = await fetch('/api/stripe/create-checkout-session', {
+//     method: 'POST',
+//     headers: {
+//       "Content-Type": 'application/json'
+//     },
+//     body: JSON.stringify({cartTotal, productNames}),
+//   })
+//   const body = await res.json()
+//   window.location.href = body.url
+// }
 
 
 const calculatePurchaseQuantity = inventory => {

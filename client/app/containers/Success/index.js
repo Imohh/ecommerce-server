@@ -17,9 +17,12 @@ class Success extends React.PureComponent {
   render() {
     return (
       <>
-        <div style={{paddingTop: "100px"}}>
-          <h2>Your order is being prepared. Thanks for your patronage!</h2>
-        </div>
+      
+
+        <h2>Your order is being prepared. Thanks for your patronage!</h2>
+
+
+
       </>
     );
   }

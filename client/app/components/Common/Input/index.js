@@ -23,25 +23,11 @@ const Input = props => {
     label,
     name,
     onInputChange,
-    inlineElement,
-    multiple
+    inlineElement
   } = props;
 
   const _onChange = e => {
-    // if (e.target.name == 'image') {
-    //   onInputChange(e.target.name, e.target.files[0]);
-    // } else {
-    //   onInputChange(e.target.name, e.target.value);
-    // }
-    if (e.target.name === 'image' && multiple) {
-      // Handle multiple image uploads
-      const files = e.target.files;
-      const uploadedImages = [];
-      for (let i = 0; i < files.length; i++) {
-        uploadedImages.push(files[i]);
-      }
-      onInputChange(e.target.name, uploadedImages);
-    } else if (e.target.name === 'image') {
+    if (e.target.name == 'image') {
       onInputChange(e.target.name, e.target.files[0]);
     } else {
       onInputChange(e.target.name, e.target.value);
@@ -144,7 +130,6 @@ const Input = props => {
             name={name}
             value={value}
             placeholder={placeholder}
-            multiple={multiple}
           />
           {inlineElement}
         </div>
@@ -159,8 +144,7 @@ Input.defaultProps = {
   decimals: true,
   rows: '4',
   inlineElement: null,
-  autoComplete: 'on',
-  multiple: false
+  autoComplete: 'on'
 };
 
 export default Input;
