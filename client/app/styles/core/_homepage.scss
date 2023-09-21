@@ -8,7 +8,7 @@
 }
 
 .brands-homepage {
-  padding:100px;
+	padding:100px;
 }
 
 
@@ -104,7 +104,7 @@
 }
 
 // .brands-homepage .brands-hompage-title h2 {
-//  font-size: 4rem;
+// 	font-size: 4rem;
 //     letter-spacing: 7px;
 //     font-variant-ligatures: none;
 //     line-height: 37px;
@@ -112,15 +112,15 @@
 // }
 
 // brands-homepage .high-fashion {
-//  background: green;
-//  padding: 20px;
+// 	background: green;
+// 	padding: 20px;
 // }
 
 // CATEGORIES
 
 .categories {
     padding: 2.2em;
-  background-color: #e7e7e7;
+	background-color: #e7e7e7;
     text-align: center;
 }
 .categories h2 {
@@ -260,18 +260,18 @@
   }
 
   @keyframes arrow-right {
-  0% {
-    transform: scale(1.5) translateX(0);
-  }
-  33% {
-    transform: scale(1.5) translateX(-5px);
-  }
-  66% {
-    transform: scale(1.5) translateX(5px);
-  }
-  100% {
-    transform: scale(1.5) translateX(0);
-  }
+	0% {
+		transform: scale(1.5) translateX(0);
+	}
+	33% {
+		transform: scale(1.5) translateX(-5px);
+	}
+	66% {
+		transform: scale(1.5) translateX(5px);
+	}
+	100% {
+		transform: scale(1.5) translateX(0);
+	}
 }
 
 .categories-image1 {
