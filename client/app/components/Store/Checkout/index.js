@@ -18,8 +18,6 @@ const Checkout = props => {
 
   const location = useLocation()
 
-
-
   // STRIPE PAYMENT
   useEffect(() => {
     // Check to see if this is a redirect back from Checkout
@@ -48,8 +46,6 @@ const Checkout = props => {
       </div>
     );
   }
-
-
 
   return (
     <div className='easy-checkout'>
