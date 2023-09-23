@@ -243,8 +243,8 @@ export const handlePayments = () => {
 
 export const handlePayment = () => {
   return async (dispatch, getState) => {  
-    const cartTotal = parseFloat(localStorage.getItem(UPDATE_CART_TOTAL));
-    // const total = JSON.parse(localStorage.getItem('shippingTotal'));
+    // const cartTotal = parseFloat(localStorage.getItem(UPDATE_CART_TOTAL));
+    const total = JSON.parse(localStorage.getItem('shippingTotal'));
     const cartItems = getState().cart.cartItems;
     const productNames = cartItems.map(item => item.name);
 
@@ -252,8 +252,7 @@ export const handlePayment = () => {
     try {
       const response = await axios.post('/api/stripe/create-checkout-session', {
         cartItems,
-        //total,
-        cartTotal,
+        total,
         productNames,
       })
 
