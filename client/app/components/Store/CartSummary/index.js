@@ -56,7 +56,8 @@ const CartSummary = props => {
             <p className='summary-label'>Shipping fee</p>
           </Col>
           <Col xs='3' className='text-right'>
-            <p className='summary-value'>£{shippingFee}</p>
+            {/*<p className='summary-value'>£{shippingFee}</p>*/}
+            <p className='summary-value'>£0</p>
           </Col>
         </Row>
         <Row className='mb-2 summary-item'>
@@ -64,7 +65,7 @@ const CartSummary = props => {
             <p className='summary-label'>Total</p>
           </Col>
           <Col xs='3' className='text-right'>
-            <p className='summary-value'>£{newTotal}</p>
+            <p className='summary-value'>£{cartTotal}</p>
           </Col>
         </Row>
     </div>
