@@ -21,6 +21,7 @@ import {
 
 // Demo styles, see 'Styles' section below for some notes on use.
 import 'react-accessible-accordion/dist/fancy-example.css';
+//import logo from '/images/placeholder-image.png'
 
 
 
@@ -146,7 +147,7 @@ const Footer = () => {
                 </a>
               </li>
               <li>
-                <a href='/#instagram' rel='noreferrer noopener' target='_blank'>
+                <a href='https://instagram.com/eminencebygtx' rel='noreferrer noopener' target='_blank'>
                   <img src="https://img.icons8.com/material-outlined/32/null/instagram-new--v1.png"/>
                 </a>
               </li>
@@ -164,9 +165,9 @@ const Footer = () => {
 
         <div className='footer-copyright'>
           {/*<span>© {new Date().getFullYear()} MERN Store</span>*/}
-          <span>EMINENCE</span>
+          <img src="/images/logo.JPG" style={{width: "10%"}} alt="logo" />
           <div className="footer-copyright-text">
-            <p>© Copyright 2023. All rights reserved - Oprime Tech</p>
+            <p>© Copyright 2023. All rights reserved - <a href="https://instagram.com/oprime.ng" target="_blank">Oprime Tech</a></p>
           </div>
         </div>
 
@@ -229,7 +230,7 @@ const Footer = () => {
                     </a>
                   </li>
                   <li>
-                    <a href='https://instagram.com/eminencebygtx' rel='noreferrer noopener' target='_blank'>
+                    <a href='/#instagram' rel='noreferrer noopener' target='_blank'>
                       <img src="https://img.icons8.com/material-outlined/32/null/instagram-new--v1.png"/>
                     </a>
                   </li>
@@ -240,9 +241,9 @@ const Footer = () => {
                   </li>
                 </ul>
               </div>
-              <h3>EMINENCE</h3>
+              <img src="/images/logo.JPG" style={{width: "10%"}} alt="logo" />
               <div className="footer-copyright-text">
-                <p>© Copyright 2023. All rights reserved - Oprime Tech</p>
+                <p>© Copyright 2023. All rights reserved - <a href="https://instagram.com/oprime.ng" target="_blank">Oprime Tech</a></p>
               </div>
                 <div className="accepted-cards">
                   <div className="accepted-column">
