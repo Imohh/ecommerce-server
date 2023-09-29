@@ -7,7 +7,8 @@ const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 router.post('/create-checkout-session', async (req, res) => {
     try {
 
-        const { total, productNames } = req.body;
+        const { total, productNames, user } = req.body;
+        const email = user.email
 
         const combineProductNames = productNames.join(', ');
         const timestampId = Date.now().toString();
