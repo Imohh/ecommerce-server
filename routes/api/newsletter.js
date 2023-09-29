@@ -9,12 +9,12 @@ const Newsletter = require('../../models/Newsletter');
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 // const nodemailer = require('nodemailer');
 
-function generateCouponCode() {
-  const timestamp = Date.now(); // Get the current timestamp in milliseconds
-  const randomString = Math.random().toString(36).substring(2, 8); // Generate a random alphanumeric string
-  const couponCode = randomString; // Combine timestamp and random string
-  return couponCode;
-}
+// function generateCouponCode() {
+//   const timestamp = Date.now(); // Get the current timestamp in milliseconds
+//   const randomString = Math.random().toString(36).substring(2, 8); // Generate a random alphanumeric string
+//   const couponCode = randomString; // Combine timestamp and random string
+//   return couponCode;
+// }
 
 router.post('/subscribe', async (req, res) => {
   try {
@@ -32,8 +32,8 @@ router.post('/subscribe', async (req, res) => {
     }
 
 
-    const couponCode = generateCouponCode()
-    console.log('Generated coupon code:', couponCode)
+    // const couponCode = generateCouponCode()
+    // console.log('Generated coupon code:', couponCode)
 
     const formEntry = new Newsletter({
       email,
