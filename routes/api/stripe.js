@@ -25,7 +25,7 @@ router.post('/create-checkout-session', async (req, res) => {
         await newPayment.save();
 
         // Fetch the coupon code associated with the user's email
-        const newsletterEntry = await Newsletter.findOne({ email });
+        // const newsletterEntry = await Newsletter.findOne({ email });
         // const couponCode = newsletterEntry ? newsletterEntry.couponId : '';
 
 
