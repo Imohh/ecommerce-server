@@ -8,9 +8,8 @@ const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 router.post('/create-checkout-session', async (req, res) => {
     try {
 
-        const { total, productNames, user } = req.body;
+        const { total, productNames } = req.body;
         const email = user.email
-        
 
         const combineProductNames = productNames.join(', ');
         const timestampId = Date.now().toString();
@@ -50,8 +49,8 @@ router.post('/create-checkout-session', async (req, res) => {
             discounts: [{
                 coupon: couponCode,
             }],
-            success_url: 'http://localhost:8080/success',
-            cancel_url: 'http://localhost:8080/contact',
+            success_url: 'https://eminencebygtx.com/success',
+            cancel_url: 'https://eminencebygtx.com/contact',
             payment_intent_data: {
                 description: paymentDescription,
             }
