@@ -7,7 +7,7 @@ const mailgun = require('../../services/mailgun');
 
 const Newsletter = require('../../models/Newsletter');
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
-const nodemailer = require('nodemailer');
+// const nodemailer = require('nodemailer');
 
 function generateCouponCode() {
   const timestamp = Date.now(); // Get the current timestamp in milliseconds

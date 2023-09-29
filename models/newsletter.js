@@ -1,10 +1,14 @@
-const Mongoose = require('mongoose');
-const { Schema } = Mongoose;
+const mongoose = require('mongoose');
+const {Schema, model} = mongoose;
 
-// Contact Schema
 const NewsletterSchema = new Schema({
   email: {
-    type: String
+    type: String,
+    required: true
+  },
+  couponId: {
+    type: String,
+    required: false,
   },
   created: {
     type: Date,
@@ -12,4 +16,6 @@ const NewsletterSchema = new Schema({
   }
 });
 
-module.exports = Mongoose.model('Newsletter', NewsletterSchema);
+const NewsletterModel = model('Newsletter', NewsletterSchema);
+
+module.exports = NewsletterModel;
