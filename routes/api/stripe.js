@@ -26,7 +26,7 @@ router.post('/create-checkout-session', async (req, res) => {
 
         // Fetch the coupon code associated with the user's email
         const newsletterEntry = await Newsletter.findOne({ email });
-        const couponCode = newsletterEntry ? newsletterEntry.couponId : '';
+        // const couponCode = newsletterEntry ? newsletterEntry.couponId : '';
 
 
         const session = await stripe.checkout.sessions.create({
