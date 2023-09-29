@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Payment = require('../../models/payment');
+const Newsletter = require('../../models/Newsletter');
 
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 
@@ -22,6 +23,11 @@ router.post('/create-checkout-session', async (req, res) => {
         });
 
         await newPayment.save();
+
+        // Fetch the coupon code associated with the user's email
+        const newsletterEntry = await Newsletter.findOne({ email });
+        const couponCode = newsletterEntry ? newsletterEntry.couponId : '';
+
 
         const session = await stripe.checkout.sessions.create({
             line_items: [
