@@ -11,49 +11,104 @@ router.post('/create-checkout-session', async (req, res) => {
         const { total, productNames, user } = req.body;
         const email = user.email
 
-        const combineProductNames = productNames.join(', ');
-        const timestampId = Date.now().toString();
+        // const combineProductNames = productNames.join(', ');
+        // const timestampId = Date.now().toString();
 
-        // Create a new payment document
-        const paymentDescription = timestampId;
+        // // Create a new payment document
+        // const paymentDescription = timestampId;
 
-        const newPayment = new Payment({
-          paymentDescription,
-          unit_amount: total,
-        });
+        // const newPayment = new Payment({
+        //   paymentDescription,
+        //   unit_amount: total,
+        // });
 
-        await newPayment.save();
+        // await newPayment.save();
 
         // Fetch the coupon code associated with the user's email
         const newsletterEntry = await Newsletter.findOne({ email });
         const couponCode = newsletterEntry ? newsletterEntry.couponId : '';
+        const isCouponUsed = newsletterEntry ? newsletterEntry.used : false;
 
+        // if (!newsletterEntry || !newsletterEntry.couponId) {
+        //     return res.status(400).json({ error: 'Coupon not found for this user.' });
+        // }
 
-        const session = await stripe.checkout.sessions.create({
-            line_items: [
-              {
-                price_data: {
-                    currency: "gbp",
-                    product_data: {
-                        name: combineProductNames,
+        if (couponCode && !isCouponUsed) {
+
+            const combineProductNames = productNames.join(', ');
+            const timestampId = Date.now().toString();
+            const paymentDescription = timestampId;
+
+            const newPayment = new Payment({
+                paymentDescription,
+                unit_amount: total,
+            });
+            await newPayment.save();
+
+            const session = await stripe.checkout.sessions.create({
+                line_items: [
+                  {
+                    price_data: {
+                        currency: "gbp",
+                        product_data: {
+                            name: combineProductNames,
+                        },
+                        unit_amount: total * 100,
                     },
-                    unit_amount: total * 100,
-                },
-                quantity: 1,
-              },
-            ],
-            mode: 'payment',
-            discounts: [{
-                coupon: couponCode,
-            }],
-            success_url: 'https://eminencebygtx.com/success',
-            cancel_url: 'https://eminencebygtx.com/contact',
-            payment_intent_data: {
-                description: paymentDescription,
-            }
-          });
+                    quantity: 1,
+                  },
+                ],
+                mode: 'payment',
+                allow_promotion_codes: true,
+                success_url: 'https://eminencebygtx.com/success',
+                cancel_url: 'https://eminencebygtx.com/contact',
+                payment_intent_data: {
+                    description: paymentDescription,
+                }
+            });
 
-        res.json({url: session.url});
+                newsletterEntry.used = true;
+                await newsletterEntry.save();
+
+            res.json({url: session.url});
+        } else {
+
+            const combineProductNames = productNames.join(', ');
+            const timestampId = Date.now().toString();
+            const paymentDescription = timestampId;
+
+            const newPayment = new Payment({
+                paymentDescription,
+                unit_amount: total,
+            });
+            await newPayment.save();
+
+            const session = await stripe.checkout.sessions.create({
+                line_items: [
+                  {
+                    price_data: {
+                        currency: "gbp",
+                        product_data: {
+                            name: combineProductNames,
+                        },
+                        unit_amount: total * 100,
+                    },
+                    quantity: 1,
+                  },
+                ],
+                mode: 'payment',
+                // discounts: [{
+                //     coupon: couponCode,
+                // }],
+                success_url: 'https://eminencebygtx.com/success',
+                cancel_url: 'https://eminencebygtx.com/contact',
+                payment_intent_data: {
+                    description: paymentDescription,
+                }
+              });
+
+            res.json({url: session.url});
+        }
     
     } catch (error) {
         console.log(error)
