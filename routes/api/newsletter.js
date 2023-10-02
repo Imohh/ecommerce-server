@@ -6,7 +6,7 @@ const mailchimp = require('../../services/mailchimp');
 const mailgun = require('../../services/mailgun');
 // const { sendWelcomeEmail } = require('../../services/email')
 
-const Newsletter = require('../../models/Newsletter');
+const Newsletter = require('../../models/newsletter');
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 
 
