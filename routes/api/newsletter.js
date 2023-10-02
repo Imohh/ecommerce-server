@@ -73,28 +73,28 @@ router.post('/subscribe', async (req, res) => {
     await formEntry.save();
 
     // Send a welcome email to the use after saving the subscription
-    const transporter = nodemailer.createTransport({
-      service: 'gmail',
-      auth: {
-        user: 'jaypee88830@gmail.com', // Your email address
-        pass: 'yyrvmddeohluxuid', // Your email password
-      },
-    });
+    // const transporter = nodemailer.createTransport({
+    //   service: 'gmail',
+    //   auth: {
+    //     user: 'jaypee88830@gmail.com', // Your email address
+    //     pass: 'yyrvmddeohluxuid', // Your email password
+    //   },
+    // });
 
-    const mailOptions = {
-      from: 'jaypee88830@gmail.com', // Your email address
-      to: email, // Subscriber's email address
-      subject: 'Welcome to Our Newsletter!',
-      text: 'Thank you for subscribing to our newsletter. Here is your special coupon code: ' + couponCode,
-    };
+    // const mailOptions = {
+    //   from: 'jaypee88830@gmail.com', // Your email address
+    //   to: email, // Subscriber's email address
+    //   subject: 'Welcome to Our Newsletter!',
+    //   text: 'Thank you for subscribing to our newsletter. Here is your special coupon code: ' + couponCode,
+    // };
 
-    transporter.sendMail(mailOptions, function(error, info) {
-      if(error) {
-        console.log(error)
-      } else {
-        console.log('Email sent: ' + info.response)
-      }
-    });
+    // transporter.sendMail(mailOptions, function(error, info) {
+    //   if(error) {
+    //     console.log(error)
+    //   } else {
+    //     console.log('Email sent: ' + info.response)
+    //   }
+    // });
 
     res.status(200).json({ message: 'Form data saved successfully' });
 
