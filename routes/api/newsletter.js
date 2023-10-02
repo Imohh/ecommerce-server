@@ -77,7 +77,7 @@ router.post('/subscribe', async (req, res) => {
       service: 'gmail',
       auth: {
         user: 'jaypee88830@gmail.com', // Your email address
-        pass: process.env.EMAIL_PASSWORD, // Your email password
+        pass: 'yyrvmddeohluxuid', // Your email password
       },
     });
 
