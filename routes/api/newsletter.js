@@ -1,6 +1,5 @@
 const express = require('express');
 const router = express.Router();
-const nodemailer = require('nodemailer');
 
 const mailchimp = require('../../services/mailchimp');
 const mailgun = require('../../services/mailgun');
@@ -9,6 +8,12 @@ const mailgun = require('../../services/mailgun');
 const Newsletter = require('../../models/newsletter');
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 
+// function generateCouponCode() {
+//   const timestamp = Date.now(); // Get the current timestamp in milliseconds
+//   const randomString = Math.random().toString(36).substring(2, 8); // Generate a random alphanumeric string
+//   const couponCode = randomString; // Combine timestamp and random string
+//   return couponCode;
+// }
 
 function generateCouponCode() {
   const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
@@ -22,9 +27,6 @@ function generateCouponCode() {
 
   return couponCode;
 }
-
-// Function to send a welcome email
-
 
 router.post('/subscribe', async (req, res) => {
   try {
@@ -43,6 +45,7 @@ router.post('/subscribe', async (req, res) => {
     const couponCode = generateCouponCode()
     console.log('Generated coupon code:', couponCode)
 
+
     const couponExpirationTimestamp = new Date(Date.now() + 10 * 60 * 1000)
     
     const formEntry = new Newsletter({
@@ -55,6 +58,7 @@ router.post('/subscribe', async (req, res) => {
       percent_off: 10,
       duration: 'once',
       id: couponCode,
+      // redeem_by: couponExpirationTimestamp,
     })
 
     // Create a Stripe customer
@@ -73,28 +77,7 @@ router.post('/subscribe', async (req, res) => {
     await formEntry.save();
 
     // Send a welcome email to the use after saving the subscription
-    // const transporter = nodemailer.createTransport({
-    //   service: 'gmail',
-    //   auth: {
-    //     user: 'jaypee88830@gmail.com', // Your email address
-    //     pass: 'yyrvmddeohluxuid', // Your email password
-    //   },
-    // });
-
-    // const mailOptions = {
-    //   from: 'jaypee88830@gmail.com', // Your email address
-    //   to: email, // Subscriber's email address
-    //   subject: 'Welcome to Our Newsletter!',
-    //   text: 'Thank you for subscribing to our newsletter. Here is your special coupon code: ' + couponCode,
-    // };
-
-    // transporter.sendMail(mailOptions, function(error, info) {
-    //   if(error) {
-    //     console.log(error)
-    //   } else {
-    //     console.log('Email sent: ' + info.response)
-    //   }
-    // });
+    // await sendWelcomeEmail(email)
 
     res.status(200).json({ message: 'Form data saved successfully' });
 
