@@ -167,7 +167,7 @@ router.post('/register', async (req, res) => {
     };
 
     // SEND EMAIL TO NEW USERS
-    await sendEmail(firstName, lastName);
+    await sendEmail(email, firstName, lastName);
 
     const token = jwt.sign(payload, secret, { expiresIn: tokenLife });
 
