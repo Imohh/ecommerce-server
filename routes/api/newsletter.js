@@ -48,30 +48,29 @@ router.post('/subscribe', async (req, res) => {
       used: false
     });
 
-    const coupon = await stripe.coupons.create({
-      percent_off: 10,
-      duration: 'once',
-      id: couponCode,
-    })
+    // const coupon = await stripe.coupons.create({
+    //   percent_off: 10,
+    //   duration: 'once',
+    //   id: couponCode,
+    // })
 
-    // Create a Stripe customer
-    const customer = await stripe.customers.create({
-      email: email,
-      description: 'Newsletter Subscriber',
-      coupon: coupon.id,
-    });
+    // // Create a Stripe customer
+    // const customer = await stripe.customers.create({
+    //   email: email,
+    //   description: 'Newsletter Subscriber',
+    //   coupon: coupon.id,
+    // });
 
-    const promotionCode = await stripe.promotionCodes.create({
-      coupon: couponCode,
-      code: couponCode,
-      // customer: customer.id,
-    });
+    // const promotionCode = await stripe.promotionCodes.create({
+    //   coupon: couponCode,
+    //   code: couponCode,
+    //   // customer: customer.id,
+    // });
 
     await formEntry.save();
 
     // Send a welcome email to the use after saving the subscription
     const transporter = nodemailer.createTransport({
-      // service: 'gmail',
       host: 'smtppro.zoho.com',
       port: 465,
       secure: true,
