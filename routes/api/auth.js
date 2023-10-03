@@ -32,7 +32,7 @@ const { secret, tokenLife } = keys.jwt;
 
   const sendMailAsync = util.promisify(transporter.sendMail).bind(transporter);
 
-  async function sendEmail(email, couponCode) {
+  async function sendEmail(email, firstName, lastName) {
     const mailOptions = {
       from: '"Welcome To EminenceByGtx" info@eminencebygtx.com',
       to: email,
@@ -166,7 +166,7 @@ router.post('/register', async (req, res) => {
       id: registeredUser.id
     };
 
-    // SEND EMAIL TO NEW USERS
+    // SEND EMAIL TO NEW USERS THAT REGISTER
     await sendEmail(email, firstName, lastName);
 
     const token = jwt.sign(payload, secret, { expiresIn: tokenLife });

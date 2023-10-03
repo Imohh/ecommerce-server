@@ -38,7 +38,7 @@ const sendMailAsync = util.promisify(transporter.sendMail).bind(transporter);
 
 async function sendEmail(email, couponCode) {
   const mailOptions = {
-    from: '"Eminence Newsletter" info@eminencebygtx.com',
+    from: '"EminenceByGtx Newsletter" info@eminencebygtx.com',
     to: email,
     subject: 'Welcome to Our Newsletter!',
     text: 'Thank you for subscribing to our newsletter. Here is your special coupon code: ' + couponCode,
