@@ -123,13 +123,13 @@ const Footer = () => {
               <button onClick={showSocial}>follow us</button>
               <div className="accepted-cards">
                 <div className="accepted-column">
-                  <img width="50" height="50" src="https://img.icons8.com/glyph-neue/50/visa.png" alt="visa"/>
+                  <img width="50" height="50" src="https://img.icons8.com/color/50/visa.png" alt="visa"/>
                 </div>
                 <div className="accepted-column">
-                  <img width="50" height="50" src="https://img.icons8.com/fluency-systems-filled/50/mastercard.png" alt="mastercard"/>
+                  <img width="50" height="50" src="https://img.icons8.com/color/50/mastercard.png" alt="mastercard"/>
                 </div>
                 <div className="accepted-column">
-                  <img width="50" height="50" src="https://img.icons8.com/ios-filled/50/amex.png" alt="amex"/>
+                  <img width="50" height="50" src="https://img.icons8.com/fluency/50/amex.png" alt="amex"/>
                 </div>
               </div>
             </div>
@@ -247,13 +247,13 @@ const Footer = () => {
               </div>
                 <div className="accepted-cards">
                   <div className="accepted-column">
-                    <img width="50" height="50" src="https://img.icons8.com/glyph-neue/50/visa.png" alt="visa"/>
+                    <img width="50" height="50" src="https://img.icons8.com/color/50/visa.png" alt="visa"/>
                   </div>
                   <div className="accepted-column">
-                    <img width="50" height="50" src="https://img.icons8.com/fluency-systems-filled/50/mastercard.png" alt="mastercard"/>
+                    <img width="50" height="50" src="https://img.icons8.com/color/50/mastercard.png" alt="mastercard"/>
                   </div>
                   <div className="accepted-column">
-                    <img width="50" height="50" src="https://img.icons8.com/ios-filled/50/amex.png" alt="amex"/>
+                    <img width="50" height="50" src="https://img.icons8.com/fluency/50/amex.png" alt="amex"/>
                   </div>
                 </div>
             </div>
