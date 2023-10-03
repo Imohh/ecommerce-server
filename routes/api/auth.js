@@ -4,6 +4,8 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const crypto = require('crypto');
 const passport = require('passport');
+const nodemailer = require('nodemailer');
+const util = require('util')
 
 const auth = require('../../middleware/auth');
 
@@ -15,6 +17,38 @@ const keys = require('../../config/keys');
 const { EMAIL_PROVIDER } = require('../../constants');
 
 const { secret, tokenLife } = keys.jwt;
+
+
+// SEND EMAIL TO CONFIRM USER SIGN UP
+  const transporter = nodemailer.createTransport({
+    host: 'smtppro.zoho.com',
+    port: 465,
+    secure: true,
+    auth: {
+      user: 'info@eminencebygtx.com',
+      pass: process.env.EMAIL_PASSWORD,
+    },
+  });
+
+  const sendMailAsync = util.promisify(transporter.sendMail).bind(transporter);
+
+  async function sendEmail(email, couponCode) {
+    const mailOptions = {
+      from: '"Welcome To EminenceByGtx" info@eminencebygtx.com',
+      to: email,
+      subject: 'Account Registration',
+      text: `Hi ${firstName} ${lastName}! Thank you for creating an account with us!.`
+    };
+
+    try {
+      const info = await sendMailAsync(mailOptions);
+      console.log('Email sent: ' + info.response);
+      return info;
+    } catch (error) {
+      console.error(error);
+      throw error;
+    }
+  }
 
 router.post('/login', async (req, res) => {
   try {
@@ -132,12 +166,8 @@ router.post('/register', async (req, res) => {
       id: registeredUser.id
     };
 
-    await mailgun.sendEmail(
-      registeredUser.email,
-      'signup',
-      null,
-      registeredUser
-    );
+    // SEND EMAIL TO NEW USERS
+    await sendEmail(firstName, lastName);
 
     const token = jwt.sign(payload, secret, { expiresIn: tokenLife });
 
