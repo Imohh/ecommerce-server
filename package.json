@@ -101,6 +101,7 @@
     "socket.io-client": "^4.2.0",
     "stripe": "^12.9.0",
     "swiper": "^9.4.1",
+    "util": "^0.12.5",
     "validatorjs": "^3.18.1"
   },
   "devDependencies": {

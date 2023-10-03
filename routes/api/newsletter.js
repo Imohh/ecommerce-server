@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const nodemailer = require('nodemailer');
+const util = require('util')
 
 const mailchimp = require('../../services/mailchimp');
 const mailgun = require('../../services/mailgun');
@@ -21,6 +22,36 @@ function generateCouponCode() {
   }
 
   return couponCode;
+}
+
+const transporter = nodemailer.createTransport({
+  host: 'smtppro.zoho.com',
+  port: 465,
+  secure: true,
+  auth: {
+    user: 'info@eminencebygtx.com',
+    pass: process.env.EMAIL_PASSWORD,
+  },
+});
+
+const sendMailAsync = util.promisify(transporter.sendMail).bind(transporter);
+
+async function sendEmail(email, couponCode) {
+  const mailOptions = {
+    from: 'info@eminencebygtx.com',
+    to: email,
+    subject: 'Welcome to Our Newsletter!',
+    text: 'Thank you for subscribing to our newsletter. Here is your special coupon code: ' + couponCode,
+  };
+
+  try {
+    const info = await sendMailAsync(mailOptions);
+    console.log('Email sent: ' + info.response);
+    return info;
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
 }
 
 router.post('/subscribe', async (req, res) => {
@@ -68,32 +99,32 @@ router.post('/subscribe', async (req, res) => {
     // });
 
     await formEntry.save();
-
+    await sendEmail(email, couponCode);
     // Send a welcome email to the use after saving the subscription
-    const transporter = nodemailer.createTransport({
-      host: 'smtppro.zoho.com',
-      port: 465,
-      secure: true,
-      auth: {
-        user: 'info@eminencebygtx.com',
-        pass: process.env.EMAIL_PASSWORD,
-      },
-    });
+    // const transporter = nodemailer.createTransport({
+    //   host: 'smtppro.zoho.com',
+    //   port: 465,
+    //   secure: true,
+    //   auth: {
+    //     user: 'info@eminencebygtx.com',
+    //     pass: process.env.EMAIL_PASSWORD,
+    //   },
+    // });
 
-    const mailOptions = {
-      from: 'info@eminencebygtx.com',
-      to: email,
-      subject: 'Welcome to Our Newsletter!',
-      text: 'Thank you for subscribing to our newsletter. Here is your special coupon code: ' + couponCode,
-    };
+    // const mailOptions = {
+    //   from: 'info@eminencebygtx.com',
+    //   to: email,
+    //   subject: 'Welcome to Our Newsletter!',
+    //   text: 'Thank you for subscribing to our newsletter. Here is your special coupon code: ' + couponCode,
+    // };
 
-    transporter.sendMail(mailOptions, function(error, info) {
-      if(error) {
-        console.log(error)
-      } else {
-        console.log('Email sent: ' + info.response)
-      }
-    });
+    // transporter.sendMail(mailOptions, function(error, info) {
+    //   if(error) {
+    //     console.log(error)
+    //   } else {
+    //     console.log('Email sent: ' + info.response)
+    //   }
+    // });
 
     res.status(200).json({ message: 'Form data saved successfully' });
 
