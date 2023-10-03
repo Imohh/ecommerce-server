@@ -38,7 +38,7 @@ const sendMailAsync = util.promisify(transporter.sendMail).bind(transporter);
 
 async function sendEmail(email, couponCode) {
   const mailOptions = {
-    from: 'info@eminencebygtx.com',
+    from: '"Eminence Newsletter" info@eminencebygtx.com',
     to: email,
     subject: 'Welcome to Our Newsletter!',
     text: 'Thank you for subscribing to our newsletter. Here is your special coupon code: ' + couponCode,
@@ -79,52 +79,27 @@ router.post('/subscribe', async (req, res) => {
       used: false
     });
 
-    // const coupon = await stripe.coupons.create({
-    //   percent_off: 10,
-    //   duration: 'once',
-    //   id: couponCode,
-    // })
+    const coupon = await stripe.coupons.create({
+      percent_off: 10,
+      duration: 'once',
+      id: couponCode,
+    })
 
-    // // Create a Stripe customer
-    // const customer = await stripe.customers.create({
-    //   email: email,
-    //   description: 'Newsletter Subscriber',
-    //   coupon: coupon.id,
-    // });
+    // Create a Stripe customer
+    const customer = await stripe.customers.create({
+      email: email,
+      description: 'Newsletter Subscriber',
+      coupon: coupon.id,
+    });
 
-    // const promotionCode = await stripe.promotionCodes.create({
-    //   coupon: couponCode,
-    //   code: couponCode,
-    //   // customer: customer.id,
-    // });
+    const promotionCode = await stripe.promotionCodes.create({
+      coupon: couponCode,
+      code: couponCode,
+      // customer: customer.id,
+    });
 
     await formEntry.save();
     await sendEmail(email, couponCode);
-    // Send a welcome email to the use after saving the subscription
-    // const transporter = nodemailer.createTransport({
-    //   host: 'smtppro.zoho.com',
-    //   port: 465,
-    //   secure: true,
-    //   auth: {
-    //     user: 'info@eminencebygtx.com',
-    //     pass: process.env.EMAIL_PASSWORD,
-    //   },
-    // });
-
-    // const mailOptions = {
-    //   from: 'info@eminencebygtx.com',
-    //   to: email,
-    //   subject: 'Welcome to Our Newsletter!',
-    //   text: 'Thank you for subscribing to our newsletter. Here is your special coupon code: ' + couponCode,
-    // };
-
-    // transporter.sendMail(mailOptions, function(error, info) {
-    //   if(error) {
-    //     console.log(error)
-    //   } else {
-    //     console.log('Email sent: ' + info.response)
-    //   }
-    // });
 
     res.status(200).json({ message: 'Form data saved successfully' });
 
