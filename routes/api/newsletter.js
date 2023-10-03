@@ -48,24 +48,24 @@ router.post('/subscribe', async (req, res) => {
       used: false
     });
 
-    // const coupon = await stripe.coupons.create({
-    //   percent_off: 10,
-    //   duration: 'once',
-    //   id: couponCode,
-    // })
+    const coupon = await stripe.coupons.create({
+      percent_off: 10,
+      duration: 'once',
+      id: couponCode,
+    })
 
-    // // Create a Stripe customer
-    // const customer = await stripe.customers.create({
-    //   email: email,
-    //   description: 'Newsletter Subscriber',
-    //   coupon: coupon.id,
-    // });
+    // Create a Stripe customer
+    const customer = await stripe.customers.create({
+      email: email,
+      description: 'Newsletter Subscriber',
+      coupon: coupon.id,
+    });
 
-    // const promotionCode = await stripe.promotionCodes.create({
-    //   coupon: couponCode,
-    //   code: couponCode,
-    //   // customer: customer.id,
-    // });
+    const promotionCode = await stripe.promotionCodes.create({
+      coupon: couponCode,
+      code: couponCode,
+      // customer: customer.id,
+    });
 
     await formEntry.save();
 
@@ -77,7 +77,7 @@ router.post('/subscribe', async (req, res) => {
       secure: true,
       auth: {
         user: 'info@eminencebygtx.com',
-        pass: 'Yyrvmddeohluxuid88@',
+        pass: process.env.EMAIL_PASSWORD,
       },
     });
 
@@ -90,7 +90,7 @@ router.post('/subscribe', async (req, res) => {
 
     transporter.sendMail(mailOptions, function(error, info) {
       if(error) {
-        console.error(error)
+        console.log(error)
       } else {
         console.log('Email sent: ' + info.response)
       }
