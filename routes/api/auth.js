@@ -50,6 +50,32 @@ const { secret, tokenLife } = keys.jwt;
     }
   }
 
+
+  // SEND EMAIL FOR RESET PASSWORD
+  async function resetPassword(email, resetToken) {
+    const mailOptions = {
+      from: '"EminenceByGtx Password Reset" info@eminencebygtx.com',
+      to: email,
+      subject: 'Reset Password',
+      text:
+        `${
+          'You are receiving this because you have requested to reset your password for your account.\n\n' +
+          'Please click on the following link, or paste this into your browser to complete the process:\n\n' +
+          'https://'
+        }eminencebygtx.com/reset-password/${resetToken}\n\n` +
+        `If you did not request this, please ignore this email and your password will remain unchanged.\n`
+    };
+
+    try {
+      const info = await sendMailAsync(mailOptions);
+      console.log('Email sent: ' + info.response);
+      return info;
+    } catch (error) {
+      console.error(error);
+      throw error;
+    }
+  }
+
 router.post('/login', async (req, res) => {
   try {
     const { email, password } = req.body;
@@ -216,12 +242,8 @@ router.post('/forgot', async (req, res) => {
 
     existingUser.save();
 
-    await mailgun.sendEmail(
-      existingUser.email,
-      'reset',
-      req.headers.host,
-      resetToken
-    );
+    // SEND EMAIL FOR RESET PASSWORD
+    await resetPassword(email, resetToken);
 
     res.status(200).json({
       success: true,
