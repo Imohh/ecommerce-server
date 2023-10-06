@@ -11,6 +11,42 @@ const mailgun = require('../../services/mailgun');
 const store = require('../../utils/store');
 const { ROLES, CART_ITEM_STATUS } = require('../../constants');
 
+
+// SEND EMAIL TO CONFIRM USER SIGN UP
+  const transporter = nodemailer.createTransport({
+    host: 'smtppro.zoho.com',
+    port: 465,
+    secure: true,
+    auth: {
+      user: 'info@eminencebygtx.com',
+      pass: process.env.EMAIL_PASSWORD,
+    },
+  });
+
+  const sendMailAsync = util.promisify(transporter.sendMail).bind(transporter);
+
+  async function sendEmail(order, users) {
+    const mailOptions = {
+      from: '"EminenceByGtx Order Placed" info@eminencebygtx.com',
+      to: email,
+      subject: `Order Confirmation ${order._id}`,
+      text: 
+          `Hi ${users.firstName}! Thank you for your order!. \n\n` +
+          `We've received your order and will contact you as soon as your package is shipped. \n\n`
+    };
+
+    try {
+      const info = await sendMailAsync(mailOptions);
+      console.log('Email sent: ' + info.response);
+      return info;
+    } catch (error) {
+      console.error(error);
+      throw error;
+    }
+  }
+
+
+
 router.post('/add', auth, async (req, res) => {
   try {
     const cart = req.body.cartId;
@@ -40,7 +76,9 @@ router.post('/add', auth, async (req, res) => {
       products: cartDoc.products
     };
 
-    await mailgun.sendEmail(order.user.email, 'order-confirmation', newOrder);
+    // SEND EMAIL TO NEW USERS THAT REGISTER
+    await sendEmail(order, users);
+
 
     res.status(200).json({
       success: true,
