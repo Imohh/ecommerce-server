@@ -52,6 +52,7 @@ router.post('/add', auth, async (req, res) => {
     const cart = req.body.cartId;
     const total = req.body.total;
     const user = req.user._id;
+    const users = req.user
 
     const order = new Order({
       cart,
