@@ -263,7 +263,7 @@ class Homepage extends React.PureComponent {
                 }}
               ></div>
               <div  className="text-center" style={{position: "relative", zIndex: 20}}>
-                <p className="classic-section-text" style={{textTransform: "uppercase", color: "white", fontWeight: "900", fontSize: "20px"}}>classic suits for classic men</p>
+                <p style={{textTransform: "uppercase", color: "white", fontWeight: "900", fontSize: "20px"}}>classic suits for classic men</p>
                 <a href="/shop/brand/suit" className="homepage-button">discover now</a>
               </div>
             </div>
