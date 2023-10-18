@@ -68,20 +68,12 @@ class ProductPage extends React.PureComponent {
         thumbnail: `${product.img || '/images/placeholder-image.png'}`
       },
       {
-        original: "https://picsum.photos/id/1/300/150",
-        thumbnail: "https://picsum.photos/id/1/300/150"
+        original: `${product.imgs || ''}`,
+        thumbnail: `${product.imgs || ''}`
       },
       {
-        original: "https://picsum.photos/id/10/300/150",
-        thumbnail: "https://picsum.photos/id/10/300/150"
-      },
-      {
-        original: "https://picsum.photos/id/100/300/150",
-        thumbnail: "https://picsum.photos/id/100/300/150"
-      },
-      {
-        original: "https://picsum.photos/id/101/300/150",
-        thumbnail: "https://picsum.photos/id/101/300/150"
+        original: `${product.imgss || ''}`,
+        thumbnail: `${product.imgss || ''}`
       }
     ];
 
@@ -139,7 +131,7 @@ class ProductPage extends React.PureComponent {
                           </Link>
                         </p>
                       )}
-                      <p className='price'>£{product.price}</p>
+                      <p className='price'>{pound}{product.price}</p>
                       <div className='item-customize product-select-section'>
                         <button
                           className={`size-option ${productShopData.size === "S" ? "active-select" : "size-select"}`}
