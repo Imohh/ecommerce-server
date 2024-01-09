@@ -24,7 +24,7 @@ app.use(
 );
 app.use(cors(
   {
-    origin: ["https://mern-ecommerce-server.vercel.app"],
+    origin: ["https://eminencebygtx.com"],
     methods: ["POST", "GET"],
     credentials: true
   }
