@@ -3,6 +3,7 @@ const router = express.Router();
 const multer = require('multer');
 const Mongoose = require('mongoose');
 const cloudinary = require('cloudinary').v2;
+const streamifier = require('streamifier');
 
 
 
@@ -330,7 +331,6 @@ router.post(
         return res.status(400).json({ error: 'This sku is already in use.' });
       }
 
-      const streamifier = require('streamifier');
       const stream = streamifier.createReadStream(req.file.buffer)
 
       const cloudinaryResult = await cloudinary.uploader.upload_stream(
