@@ -32,14 +32,7 @@ const { ROLES } = require('../../constants');
 // });
 
 // my code
-const storage = cloudinaryStorage({
-  cloudinary: cloudinary,
-  params: {
-    folder: 'your_cloudinary_folder', // Optional folder in Cloudinary
-    format: async (req, file) => 'jpg', // Format you want to save on Cloudinary
-    public_id: (req, file) => `${Date.now()}`, // Unique identifier for each file
-  },
-});
+const storage = multer.memoryStorage()
 
 
 const upload = multer({ storage });
@@ -306,8 +299,8 @@ router.post(
       const taxable = req.body.taxable;
       const isActive = req.body.isActive;
       const brand = req.body.brand;
-      // const img = req.file.path;
-      // const contentType = req.file.mimetype
+      const img = req.file.path;
+      const contentType = req.file.mimetype
       
 
       console.log(img)
@@ -336,9 +329,8 @@ router.post(
         return res.status(400).json({ error: 'This sku is already in use.' });
       }
 
-      // const result = await cloudinary.uploader.upload(img);
-      const result = req.file
-
+      const result = await cloudinary.uploader.upload(img);
+      
       const product = new Product({
         sku,
         name,
@@ -349,7 +341,7 @@ router.post(
         isActive,
         brand,
         img: result.url,
-        contentType: result.mimetype,
+        contentType
       });
 
 
