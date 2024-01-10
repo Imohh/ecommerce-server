@@ -32,14 +32,7 @@ const { ROLES } = require('../../constants');
 // });
 
 // my code
-const storage = cloudinaryStorage({
-  cloudinary: cloudinary,
-  params: {
-    folder: 'your_cloudinary_folder', // Optional folder in Cloudinary
-    format: async (req, file) => 'jpg', // Format you want to save on Cloudinary
-    public_id: (req, file) => `${Date.now()}`, // Unique identifier for each file
-  },
-});
+const storage = multer.memoryStorage()
 
 
 const upload = multer({ storage });
