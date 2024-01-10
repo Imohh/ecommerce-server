@@ -306,6 +306,11 @@ router.post(
       const taxable = req.body.taxable;
       const isActive = req.body.isActive;
       const brand = req.body.brand;
+      const img = req.file.path;
+      const contentType = req.file.mimetype
+      
+
+      console.log(img)
 
       if (!sku) {
         return res.status(400).json({ error: 'You must enter sku.' });
@@ -331,8 +336,8 @@ router.post(
         return res.status(400).json({ error: 'This sku is already in use.' });
       }
 
-      const result = req.file; // The Cloudinary result is already available in req.file
-
+      const result = await cloudinary.uploader.upload(img);
+      
       const product = new Product({
         sku,
         name,
@@ -343,25 +348,24 @@ router.post(
         isActive,
         brand,
         img: result.url,
-        contentType: result.mimetype,
+        contentType
       });
+
 
       const savedProduct = await product.save();
 
       res.status(200).json({
         success: true,
         message: `Product has been added successfully!`,
-        product: savedProduct,
+        product: savedProduct
       });
     } catch (error) {
-      console.error(error);
       return res.status(400).json({
-        error: 'Your request could not be processed. Please try again. 006',
+        error: 'Your request could not be processed. Please try again. 006'
       });
     }
   }
 );
-
 
 // fetch products api
 router.get(
