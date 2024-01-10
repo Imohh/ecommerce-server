@@ -32,10 +32,11 @@ const { ROLES } = require('../../constants');
 // });
 
 // my code
-const storage = multer.memoryStorage()
+//const storage = multer.memoryStorage()
+const upload = multer()
 
 
-const upload = multer({ storage });
+// const upload = multer({ storage });
 
 
 
@@ -299,8 +300,8 @@ router.post(
       const taxable = req.body.taxable;
       const isActive = req.body.isActive;
       const brand = req.body.brand;
-      const img = req.file.path;
-      const contentType = req.file.mimetype
+      // const img = req.file.path;
+      // const contentType = req.file.mimetype
       
 
       console.log(img)
@@ -329,29 +330,47 @@ router.post(
         return res.status(400).json({ error: 'This sku is already in use.' });
       }
 
-      const result = await cloudinary.uploader.upload(img);
-      
-      const product = new Product({
-        sku,
-        name,
-        description,
-        quantity,
-        price,
-        taxable,
-        isActive,
-        brand,
-        img: result.url,
-        contentType
-      });
+      const streamifier = require('streamifier');
+      const stream = streamifier.createReadStream(req.file.buffer)
 
+      const cloudinaryResult = await cloudinary.uploader.upload_stream(
+        {resource_type: 'image', folder: 'cloudinary_test'},
+        (error, result) => {
+          if(error) {
+            console.error(error)
+            return res.status(500).json({error: 'Error uploading to Cloudinary'})
+          }
+          
+          const product = new Product({
+            sku,
+            name,
+            description,
+            quantity,
+            price,
+            taxable,
+            isActive,
+            brand,
+            img: result.url,
+            contentType: req.file.mimetype,
+          });
 
-      const savedProduct = await product.save();
+          product.save((err, savedProduct) => {
+            if (err) {
+              console.error(err);
+              return res.status(500).json({ error: 'Error saving product to the database.' });
+            }
 
-      res.status(200).json({
-        success: true,
-        message: `Product has been added successfully!`,
-        product: savedProduct
-      });
+            res.status(200).json({
+              success: true,
+              message: 'Product has been added successfully!',
+              product: savedProduct,
+            });
+          });
+
+        }
+      );
+
+      stream.pipe(cloudinaryResult)
     } catch (error) {
       return res.status(400).json({
         error: 'Your request could not be processed. Please try again. 006'

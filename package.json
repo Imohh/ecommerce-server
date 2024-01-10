@@ -99,6 +99,7 @@
     "simple-line-icons": "^2.4.1",
     "socket.io": "^4.6.2",
     "socket.io-client": "^4.2.0",
+    "streamifier": "^0.1.1",
     "stripe": "^12.9.0",
     "swiper": "^9.4.1",
     "util": "^0.12.5",
