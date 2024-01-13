@@ -246,7 +246,7 @@ export const addProduct = () => {
         quantity: 'required|numeric',
         price: 'required|numeric',
         taxable: 'required',
-        image: 'required',
+        // image: 'required',
         brand: 'required'
       };
 
@@ -262,7 +262,7 @@ export const addProduct = () => {
         description: product.description,
         price: product.price,
         quantity: product.quantity,
-        image: product.image,
+        // image: product.image,
         isActive: product.isActive,
         taxable: product.taxable.value,
         brand:
@@ -284,7 +284,7 @@ export const addProduct = () => {
         'required.quantity': 'Quantity is required.',
         'required.price': 'Price is required.',
         'required.taxable': 'Taxable is required.',
-        'required.image': 'Please upload files with jpg, jpeg, png format.',
+        // 'required.image': 'Please upload files with jpg, jpeg, png format.',
         'required.brand': 'Brand is required.'
       });
 

@@ -27,7 +27,7 @@ const AddProduct = props => {
     productChange,
     addProduct,
     brands,
-    image
+    // image
   } = props;
 
   const handleSubmit = event => {
