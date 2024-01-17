@@ -32,6 +32,7 @@ import slider1 from './assets/slider1.jpg'
 
 import AwesomeSlider from 'react-awesome-slider';
 import 'react-awesome-slider/dist/styles.css';
+import withAutoplay from 'react-awesome-slider/dist/autoplay'
 
 
 
@@ -127,11 +128,11 @@ class Homepage extends React.PureComponent {
         {/*SLIDER*/}
         <div className="">
 
-          <AwesomeSlider animation="cubeAnimation" style={{height: "600px"}} >
+          <AutoplaySlider play={true} style={{height: "600px"}}>
             <div data-src={slider} style={{height: "600px"}} />
             <div data-src={slider1} style={{height: "600px"}} />
             <div data-src={slider} style={{height: "600px"}} />
-          </AwesomeSlider>
+          </AutoplaySlider>
 
         </div>
 
