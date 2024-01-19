@@ -86,6 +86,8 @@ class Homepage extends React.PureComponent {
       progressContent.current.textContent = `${Math.ceil(time / 1000)}s`;
     };
 
+    const AutoplaySlider = withAutoplay(AwesomeSlider)
+
 
     return (
       <>
