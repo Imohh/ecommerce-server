@@ -24,14 +24,14 @@ const ProductSchema = new Schema({
     slug: 'name',
     unique: true
   },  
-  // img: {
-  //   type: String,
-  //   required: true
-  // },
-  // contentType: {
-  //   type: String,
-  //   required: true
-  // },
+  img: {
+    type: String,
+    required: true
+  },
+  contentType: {
+    type: String,
+    required: true
+  },
   description: {
     type: String,
     trim: true
