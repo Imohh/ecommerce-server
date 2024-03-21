@@ -13,6 +13,8 @@ import AddToWishList from '../AddToWishList';
 const ProductList = props => {
   const { products, updateWishlist, authenticated } = props;
 
+  const pound = '\u00A3'
+  
   return (
 
 
@@ -21,7 +23,7 @@ const ProductList = props => {
     <div key={index} className="cards">
       <div className="card-content" >
         <div className="top-bar">
-          <span className="float-right lnr lnr-heart">
+          <span className="float-left lnr lnr-heart">
             <AddToWishList
               id={product._id}
               liked={product?.isLiked ?? false}
@@ -42,6 +44,9 @@ const ProductList = props => {
               : '/images/placeholder-image.png'
               }`}
             />
+            <div className="overlay">
+              <div className="shop-now">Shop Now</div>
+            </div>
           </div>
         </Link>
       </div>
@@ -52,7 +57,7 @@ const ProductList = props => {
       <div className="card-description">
         <div className="title">
           <span style={{textTransform: "capitalize"}}>{product.name}</span><br />
-          £{product.price}
+          {pound}{product.price}
         </div>
       </div>
       {/*<div className="card-description">
