@@ -373,13 +373,26 @@ body.user-is-tabbing button:focus {
   }
 }
 
-.bag-icon {
-  cursor: pointer;
-  width: 40px;
-  height: 40px;
-  stroke: $black;
-  -webkit-transition: $layout-transition-speed;
-  transition: $layout-transition-speed;
+@media (min-width: 768px) {  
+  .bag-icon {
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    stroke: $black;
+    -webkit-transition: $layout-transition-speed;
+    transition: $layout-transition-speed;
+  }
+}
+
+@media (max-width: 767px) {  
+  .bag-icon {
+    cursor: pointer;
+    width: 20px;
+    height: 20px;
+    stroke: $black;
+    -webkit-transition: $layout-transition-speed;
+    transition: $layout-transition-speed;
+  }
 }
 
 .close-icon {
