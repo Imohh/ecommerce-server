@@ -32,6 +32,7 @@ import Button from '../../components/Common/Button';
 import CartIcon from '../../components/Common/CartIcon';
 import { BarsIcon } from '../../components/Common/Icon';
 import MiniBrand from '../../components/Store//MiniBrand';
+import logo from "../../images/logo.png"
 import Menu from '../NavigationMenu';
 import Cart from '../Cart';
 
@@ -140,7 +141,143 @@ class Navigation extends React.PureComponent {
 
       <>
 
-          <nav className="navbar navbar-expand-lg fixed-top">
+          <div className="navbar-top">
+            <p>free shipping on orders more than $120 in the uk</p>
+          </div>
+          <div className="second-nav">
+            <div className="row">
+              <div className="col-lg-3 col-md-3 d-flex justify-content-end" style={{margin: "auto"}}>
+                <a href="/">
+                  <img src={logo} style={{ width: "200px", height: "auto" }} alt="logo" />
+                </a>
+              </div>
+              <div className="col-lg-6 col-md-6 d-flex">
+                <Autosuggest
+                  suggestions={suggestions}
+                  onSuggestionsFetchRequested={onSuggestionsFetchRequested}
+                  onSuggestionsClearRequested={onSuggestionsClearRequested}
+                  getSuggestionValue={this.getSuggestionValue}
+                  renderSuggestion={this.renderSuggestion}
+                  inputProps={inputProps}
+                  onSuggestionSelected={(_, item) => {
+                    history.push(`/product/${item.suggestion.slug}`);
+                  }}
+                  className="autosuggest-container"
+                  renderInputComponent={inputProps => (
+                    <input {...inputProps} className="autosuggest-input" 
+                      style={{width: "450px", height: "10px", marginRight: "8px"}} />
+                  )}
+                />
+                <button className="homepage-butt" onClick={() => onSearch(inputProps.value)}>search</button>
+              </div>
+              <div className="col-lg-3 col-md-3" style={{margin: "auto"}}>
+                <ul className="horizontal-list">
+                  <li><a href="https://instagram.com/eminencebygtx" target="_blank"><img src="https://img.icons8.com/material-outlined/24/null/instagram-new--v1.png"/></a></li>
+                  <li><a href="https://facebook.com/eminence" target="_blank"><img src="https://img.icons8.com/windows/24/null/facebook-f--v1.png"/></a></li>
+                  <li><a href="https://wa.me/+447759962526" target="_blank"><img width="24" height="24" src="https://img.icons8.com/material-sharp/24/whatsapp--v1.png" alt="whatsapp--v1"/></a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div className="third-nav">
+            <div className="row">
+              <div className="col-lg-3" style={{margin: "auto"}}>
+                <button className="nav-category">all categories</button>
+              </div>
+              <div className="col-lg-6 d-flex justify-content-center" style={{margin: "auto"}}>
+                <ul className="horizontals-list d-flex justify-content-center">
+                  <li><a href="/">home</a></li>
+                  <li><a href="/shop">shop</a></li>
+                  <li><a href="">custom</a></li>
+                  <li><a href="">media</a></li>
+                  <li><a href="/about">about</a></li>
+                  <li><a href="/contact">contact</a></li>
+                </ul>
+              </div>
+              <div className="col-lg-3 d-flex justify-content-end" style={{margin: "auto"}}>
+                <ul className="horizontal-list">
+                  <li>
+                    <Nav navbar>
+                      {authenticated ? (
+                        <UncontrolledDropdown nav inNavbar>
+                          <DropdownToggle nav>
+                            <img width="50" height="50" src="https://img.icons8.com/small/50/user.png" alt="user"/>
+                            {/*<span className="hide-display">{user.firstName ? user.firstName : 'Welcome'}</span>
+                            <span className='fa fa-chevron-down dropdown-caret'></span>*/}
+                          </DropdownToggle>
+                          <DropdownMenu right>
+                            <DropdownItem
+                              onClick={() => history.push('/dashboard')}
+                            >
+                              Dashboard
+                            </DropdownItem>
+                            <DropdownItem onClick={signOut}>Sign Out</DropdownItem>
+                          </DropdownMenu>
+                        </UncontrolledDropdown>
+                      ) : (
+                        <UncontrolledDropdown nav inNavbar>
+                          <DropdownToggle nav>
+                            <img width="50" height="50" src="https://img.icons8.com/small/50/user.png" alt="user"/>
+                            {/*<span className="hide-display">Welcome!</span>
+                            <span className='fa fa-chevron-down dropdown-caret hide-display'></span>*/}
+                          </DropdownToggle>
+                          <DropdownMenu right>
+                            <DropdownItem onClick={() => history.push('/login')}>
+                              Login
+                            </DropdownItem>
+                            <DropdownItem onClick={() => history.push('/register')}>
+                              Sign Up
+                            </DropdownItem>
+                          </DropdownMenu>
+                        </UncontrolledDropdown>
+                      )}
+                    </Nav>
+                  </li>
+                  <li><a href=""><img width="50" height="50" src="https://img.icons8.com/ios/50/like--v1.png" alt="like--v1"/></a></li>
+                  <li>
+                    <CartIcon
+                      className='cart-icon-size'
+                      cartItems={cartItems}
+                      onClick={toggleCart}
+                    />
+                    {/*<a href="" onClick={toggleCart}>
+                      <img width="50" height="50" src="https://img.icons8.com/material-sharp/50/shopping-cart.png" alt="shopping-cart"/>
+                    </a>*/}
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+
+          {/*MOBILE MENU*/}
+          <div className="mobile-menu">
+            <div>
+              <Button
+                variant='empty'
+                className='nav-btn'
+                ariaLabel='open the menu'
+                icon={<BarsIcon />}
+                onClick={() => this.toggleMenu()}
+              />
+            </div>
+            <div>
+              <a href="/">
+                <img src={logo} style={{ width: "200px", height: "auto" }} alt="logo" />
+              </a>
+            </div>
+            <div className='header-links cart-icon-nav'>
+              <CartIcon
+                className=''
+                cartItems={cartItems}
+                onClick={toggleCart}
+              />
+            </div>
+          </div>
+
+
+
+          {/*<nav className="navbar navbar-expand-lg fixed-top">
             <Button
               variant='empty'
               className='nav-btn'
@@ -210,7 +347,7 @@ class Navigation extends React.PureComponent {
                   />
                 </div>
               </div>
-          </nav>
+          </nav>*/}
 
           
           <div id="open-modal" className="modal-window">
