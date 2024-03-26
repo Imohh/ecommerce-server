@@ -201,7 +201,7 @@ body.user-is-tabbing button:focus {
 //product button
 .input-btn {
   &.product-detail-btn {
-    background: #000 !important;
+    background: #84590C !important;
     color: #fff !important;
     width: 100%;
     padding: 15px 0;
@@ -229,7 +229,7 @@ body.user-is-tabbing button:focus {
   &.custom-btn-dark {
     position: relative;
     border: $border-default;
-    background-color: #000;
+    background-color: #84590C;
     -webkit-transition: $layout-transition-speed;
     transition: $layout-transition-speed;
 

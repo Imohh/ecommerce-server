@@ -437,13 +437,13 @@
 
 @media screen and (min-width: 601px) {
   .product-shop {
-    padding: 100px 50px
+    padding: 50px 50px
   }
 }
 
 @media screen and (max-width: 600px) {
   .product-shop {
-    padding: 100px 20px
+    padding: 50px 20px
   }
 }
 
@@ -568,7 +568,7 @@
 
 .in-stock {
   color: #fff;
-  background: #000 !important;
+  background: #84590C !important;
 }
 
 .out-of-stock {
@@ -794,7 +794,7 @@ On click the images will be displayed at normal size to complete the effect
 }
 
 .quantity-btn {
-  background: #000;
+  background: #84590C;
   color: #fff !important;
   padding: 10px 20px;
 }

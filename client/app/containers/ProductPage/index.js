@@ -198,7 +198,7 @@ class ProductPage extends React.PureComponent {
                             text='Remove From Bag'
                             className='product-detail-btn'
                             style={{color: "#fff !important"}}
-                            icon={<BagIcon />}
+                            // icon={<BagIcon />}
                             onClick={() => handleRemoveFromCart(product)}
                           />
                         ) : (
@@ -208,7 +208,7 @@ class ProductPage extends React.PureComponent {
                             }
                             text='Add To Bag'
                             className='product-detail-btn'
-                            icon={<BagIcon />}
+                            // icon={<BagIcon />}
                             onClick={() => {
                               if (!productShopData.size) {
                                 alert("Please select a size."); // Display an error message
