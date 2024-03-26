@@ -20,7 +20,7 @@ import kaftan from './images/kaftan.png'
 import eshiki from './images/eshiki.png'
 import suit from './images/suit.png'
 import senator from './images/senator.png'
-import asooke from './images/asooke.JPG'
+import asooke from './images/asooke.jpg'
 
 class BrandsShop extends React.PureComponent {
   componentDidMount() {
