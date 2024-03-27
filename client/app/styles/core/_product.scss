@@ -275,6 +275,7 @@
 @media screen and (max-width: 600px) {
   .cards {
     width: 48%;
+    height: 370px;
     margin-right: 2%;
     position: relative;
   }
@@ -568,7 +569,7 @@
 
 .in-stock {
   color: #fff;
-  background: #84590C !important;
+  background: #000 !important;
 }
 
 .out-of-stock {
@@ -794,7 +795,7 @@ On click the images will be displayed at normal size to complete the effect
 }
 
 .quantity-btn {
-  background: #84590C;
+  background: #000;
   color: #fff !important;
   padding: 10px 20px;
 }
