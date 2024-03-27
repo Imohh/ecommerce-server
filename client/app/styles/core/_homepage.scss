@@ -60,14 +60,14 @@
   }
 }
 
-@media (min-width: 700px) {
+@media (min-width: 768px) {
   .cardars {
     grid-auto-columns: calc(calc(100% / 3) - 20px);
     grid-column-gap: 30px;
   }
 
   .bestseller-section-one .bestseller-text {
-    font-size: 4vh;
+    font-size: 2vh;
   }
 }
 
@@ -683,6 +683,7 @@
     background: red;
     color: #fff !important;
     padding: 5px 10px;
+    width: 100%;
   }
 }
 
