@@ -235,6 +235,7 @@
   .cards {
     width: 48%;
     margin-right: 2%;
+    height: 500px;
     position: relative;
   }
 
@@ -272,13 +273,34 @@
   }
 }
 
-@media screen and (max-width: 600px) {
+@media (min-width: 300px) and (max-width: 438px) {
   .cards {
     width: 48%;
-    height: 370px;
+    height: 300px;
     margin-right: 2%;
     position: relative;
   }
+}
+
+@media (min-width: 439px) and (max-width: 497px) {
+  .cards {
+    width: 48%;
+    height: 350px;
+    margin-right: 2%;
+    position: relative;
+  }
+}
+
+@media (min-width: 498px) and (max-width: 600px) {
+  .cards {
+    width: 48%;
+    height: 410px;
+    margin-right: 2%;
+    position: relative;
+  }
+}
+
+@media screen and (max-width: 600px) {
 
   .cards:hover .overlay {
     opacity: 0.7;
