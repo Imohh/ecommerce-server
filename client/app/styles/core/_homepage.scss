@@ -592,7 +592,7 @@
     right: 0;
     width: 70%;
     height: auto;
-    z-index: 1000; /* Ensure images are behind text */
+    z-index: 10; /* Ensure images are behind text */
   }
 
   .hero-image:nth-child(2) {
@@ -726,7 +726,7 @@
   }
 
   .hero-text {
-    z-index: 1100;
+    z-index: 11;
   }
 
   .hero-content {
