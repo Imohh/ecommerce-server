@@ -44,31 +44,31 @@ class BrandsShop extends React.PureComponent {
     const totalProducts = products.length;
     const left = limit * (currentPage - 1) + 1;
     const right = totalProducts + left - 1;
-    const slug = this.props.match.params.slug;
+    // const slug = this.props.match.params.slug;
 
-    function getBackgroundImage(slug) {
-      switch (slug) {
-        case 'agbada':
-          return "agbada agbada agbada agbada agbada";
-        case 'kaftan':
-          return kaftan;
-        case 'eshiki':
-          return eshiki;
-        case 'senator':
-          return senator;
-        case 'aso-oke':
-          return asooke;
-        case 'suit':
-          return suit;
-        default:
-          return suit;
-      }
-    }
+    // function getBackgroundImage(slug) {
+    //   switch (slug) {
+    //     case 'agbada':
+    //       return "agbada agbada agbada agbada agbada";
+    //     case 'kaftan':
+    //       return kaftan;
+    //     case 'eshiki':
+    //       return eshiki;
+    //     case 'senator':
+    //       return senator;
+    //     case 'aso-oke':
+    //       return asooke;
+    //     case 'suit':
+    //       return suit;
+    //     default:
+    //       return suit;
+    //   }
+    // }
 
     return (
       <div className='brands-shop'>
         <div className="brands-hero" 
-          style={{position: "relative", backgroundImage: `url(${getBackgroundImage(slug)})`,
+          style={{position: "relative", // backgroundImage: `url(${getBackgroundImage(slug)})`,
           backgroundRepeat: "no-repeat", backgroundSize: "cover", backgroundPosition: "center"}}>
           <div
             style={{
