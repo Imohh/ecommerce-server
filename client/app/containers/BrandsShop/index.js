@@ -49,7 +49,7 @@ class BrandsShop extends React.PureComponent {
     function getBackgroundImage(slug) {
       switch (slug) {
         case 'agbada':
-          return agbada;
+          return "agbada agbada agbada agbada agbada";
         case 'kaftan':
           return kaftan;
         case 'eshiki':
