@@ -158,12 +158,14 @@ class Navigation extends React.PureComponent {
       this.props.toggleMenu();
     };
 
+    const pound = '\u00A3'
+
     return (
 
       <>
 
           <div className="navbar-top">
-            <p>free shipping on orders more than $120 in the uk</p>
+            <p>free shipping on orders more than {pound}120 in the uk</p>
           </div>
           <div className="second-nav">
             <div className="row">
