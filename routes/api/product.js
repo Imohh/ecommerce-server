@@ -21,16 +21,19 @@ const { ROLES } = require('../../constants');
 
 
 
-const storage = multer.diskStorage({
-  destination(req, file, cb) {
-    cb(null, 'uploads/');
-  },
-  filename(req, file, cb) {
-    cb(null, `${Date.now()}.jpg`);
-  },
-});
+// const storage = multer.diskStorage({
+//   destination(req, file, cb) {
+//     cb(null, 'uploads/');
+//   },
+//   filename(req, file, cb) {
+//     cb(null, `${Date.now()}.jpg`);
+//   },
+// });
 
+const storage = new Multer.memoryStorage();
 const upload = multer({ storage });
+
+
 
 
 
@@ -294,11 +297,15 @@ router.post(
       const taxable = req.body.taxable;
       const isActive = req.body.isActive;
       const brand = req.body.brand;
-      const img = req.file.path;
+      // const img = req.file.path;
+      const img = req.file.buffer;
       const contentType = req.file.mimetype
       
 
       console.log(img)
+
+      const b64Image = Buffer.from(img).toString('base64');
+      const dataURI = `data:${contentType};base64,${b64Image}`;
 
       if (!sku) {
         return res.status(400).json({ error: 'You must enter sku.' });
@@ -326,8 +333,10 @@ router.post(
 
       
 
-      const result = await cloudinary.uploader.upload(img)
-
+      // const result = await cloudinary.uploader.upload(img)
+      const result = await cloudinary.uploader.upload(dataURI, {
+        resource_type: 'auto',
+      });
           
       const product = new Product({
         sku,
