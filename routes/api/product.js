@@ -297,8 +297,8 @@ router.post(
       const taxable = req.body.taxable;
       const isActive = req.body.isActive;
       const brand = req.body.brand;
-      const img = req.file.path;
-      // const img = req.file.buffer;
+      // const img = req.file.path;
+      const img = req.file.buffer;
       const contentType = req.file.mimetype
       
 
@@ -333,10 +333,10 @@ router.post(
 
       
 
-      const result = await cloudinary.uploader.upload(img)
-      // const result = await cloudinary.uploader.upload(dataURI, {
-      //   resource_type: 'auto',
-      // });
+      // const result = await cloudinary.uploader.upload(img)
+      const result = await cloudinary.uploader.upload(dataURI, {
+        resource_type: 'auto',
+      });
           
       const product = new Product({
         sku,
